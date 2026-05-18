@@ -1,0 +1,4 @@
+interface:
+  display_name: "Appium Mobile E2E"
+  short_description: "Run mobile feature tests from a flow request"
+  default_prompt: "Use $appium-mobile-e2e to test the requested mobile feature with Appium."
