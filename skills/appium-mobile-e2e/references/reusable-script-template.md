@@ -6,7 +6,6 @@ Use this reference only when the user explicitly asks for a saved script, or whe
 
 - Put reusable scripts directly under `e2e/`.
 - Use a short feature name such as `e2e/booking.js`.
-- Avoid nested folders and `.manual.js` suffixes.
 
 ## Environment setup
 

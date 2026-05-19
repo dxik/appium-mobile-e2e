@@ -7,25 +7,37 @@ description: Use when the user asks to automatically test a mobile feature or fl
 
 Use this skill to turn a product-level mobile flow request into a real Appium run.
 
+## Prerequisite gate
+
+Before any Appium mobile E2E work, verify the local Appium installation and server first. This is mandatory before selecting devices, preparing simulators, creating sessions, driving flows, or writing reusable scripts.
+
+1. Check that Appium is installed and callable, for example with `appium --version` or the repo's documented Appium command.
+2. Check whether a local Appium server is already running at `http://127.0.0.1:4723/status`.
+3. If the local server is not running, start Appium locally with the repo's preferred command or the lightest standard command, then re-check `/status`.
+4. Stop and report the blocker if Appium is not installed, cannot start, or `/status` does not respond successfully.
+5. Only proceed to device selection, session creation, interactive driving, or script execution after the local Appium server is confirmed healthy.
+
 ## Core workflow
 
-1. Read `docs/mobile-screen-map.md` first. If it does not exist, create it before proceeding and seed it from the screens/routing you can confirm in a simple route-to-screen format such as `/booking -> BookingHomeScreen (lib/screens/booking_home_screen.dart)`.
-2. Resolve the requested user flow from navigation, not by grepping the entire UI tree.
-3. Inspect only the route-owner file and destination screen files needed for that flow.
-4. Reuse an existing script in `e2e/` when one already matches the flow. Name reusable scripts after the feature or flow, for example `e2e/booking.js`.
-5. Run against the real Appium server and a concrete device or simulator.
-6. Verify the end state from the app, not only that taps succeeded.
-7. Report:
+1. Pass the prerequisite gate: Appium installed, local Appium server running, and `/status` healthy.
+2. Read `docs/mobile-screen-map.md` first. If it does not exist, create it before proceeding and seed it from the screens/routing you can confirm in a simple route-to-screen format such as `/booking -> BookingHomeScreen (lib/screens/booking_home_screen.dart)`.
+3. Resolve the requested user flow from navigation, not by grepping the entire UI tree.
+4. Inspect only the route-owner file and destination screen files needed for that flow.
+5. Reuse an existing script in `e2e/` when one already matches the flow. Name reusable scripts after the feature or flow, for example `e2e/booking.js`.
+6. Run against the real Appium server and a concrete device or simulator.
+7. Verify the end state from the app, not only that taps succeeded.
+8. Report:
+   - Appium local install/server status
    - route taken
    - whether the flow passed
    - any blocker that prevents reliable automation
-8. If no reusable script existed before the run and the flow passed, ask the user whether they want this flow added to the repo as a reusable Appium script for future reruns. Do not create a new script before asking unless the user explicitly requested a reusable test/script.
+9. If no reusable script existed before the run and the flow passed, ask the user whether they want this flow added to the repo as a reusable Appium script for future reruns. Do not create a new script before asking unless the user explicitly requested a reusable test/script.
 
 ## Default execution rules
 
 - Prefer visible product text, native predicates, and route knowledge over brittle broad searches.
 - Use the router map to answer "which screen owns this flow?" before inspecting implementation.
-- Prefer a known local Appium server when one is already running. Otherwise use the lightest valid session setup for the platform.
+- Prefer a known local Appium server when one is already running. Otherwise start Appium locally and verify `/status` before any session setup.
 - When a device or simulator target is already known, create the Appium session directly with explicit capabilities. Do not call device-selection or simulator-prep helpers first unless the target is unknown or unavailable.
 - During discovery, drive the live session directly: inspect the current screen, tap, type, scroll, and re-check state with Appium calls. Do not write ad-hoc temporary scripts just to probe the next step.
 - Temporary scripts are disallowed for ordinary flow exploration. Use them only when the user explicitly asks for a saved script, when an existing reusable script is being validated, or when a long deterministic replay is clearly faster than continuing interactively.
