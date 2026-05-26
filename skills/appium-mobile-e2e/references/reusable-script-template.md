@@ -10,8 +10,8 @@ Use this reference only when the user explicitly asks for a saved script, or whe
 ## Environment setup
 
 - Read optional local config from `e2e/environment.js` before applying defaults.
-- Do not commit `e2e/environment.js`; ensure it is ignored in `.gitignore`.
-- Commit `e2e/environment.example.js` with non-secret sample values when the project does not already have one.
+- Create `e2e/environment.js` with non-secret sample values when it does not already exist.
+- Commit `e2e/environment.js`; do not add it to `.gitignore`.
 - Environment variables provided by the shell must override values from `e2e/environment.js`.
 
 Example local config shape:
