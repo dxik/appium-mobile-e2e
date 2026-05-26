@@ -4,8 +4,8 @@ Use this reference only when the user explicitly asks for a saved script, or whe
 
 ## File location and naming
 
-- Put reusable scripts directly under `e2e/`.
-- Use a short feature name such as `e2e/booking.js`.
+- Put reusable flow scripts under `e2e/flows/`.
+- Use a short feature name such as `e2e/flows/booking.js`.
 
 ## Environment setup
 
@@ -38,7 +38,7 @@ Include these inputs when relevant:
 
 ## Shared helpers
 
-Prefer small helpers for common operations. If the repo already has `e2e/*.js` scripts, copy their helper style. Otherwise implement thin wrappers around standard Appium WebDriver calls.
+Prefer small helpers for common operations. If the repo already has `e2e/flows/*.js` scripts, copy their helper style. Otherwise implement thin wrappers around standard Appium WebDriver calls.
 
 - `findFirst` to return the first matching element
 - `maybeTap` to tap only when a matching element exists
@@ -70,7 +70,7 @@ Every reusable E2E script should write a JSON result file under `e2e/results/`.
 - Always call `writeResult(resultPath, result)` from `finally` so a result file exists for passed and failed runs.
 - Print one clear pass or fail line.
 
-Use the repository's existing `e2e/*.js` scripts as examples when present.
+Use the repository's existing `e2e/flows/*.js` scripts as examples when present.
 
 ## Result helper pattern
 

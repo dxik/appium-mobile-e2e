@@ -23,7 +23,7 @@ Before any Appium mobile E2E work, verify the local Appium installation and serv
 2. Read `docs/mobile-screen-map.md` first. If it does not exist, create it before proceeding and seed it from the screens/routing you can confirm in a simple route-to-screen format such as `/booking -> BookingHomeScreen (lib/screens/booking_home_screen.dart)`.
 3. Resolve the requested user flow from navigation, not by grepping the entire UI tree.
 4. Inspect only the route-owner file and destination screen files needed for that flow.
-5. Reuse an existing script in `e2e/` when one already matches the flow. Name reusable scripts after the feature or flow, for example `e2e/booking.js`.
+5. Reuse an existing script in `e2e/flows/` when one already matches the flow. Name reusable scripts after the feature or flow, for example `e2e/flows/booking.js`.
 6. Run against the real Appium server and a concrete device or simulator.
 7. Verify the end state from the app, not only that taps succeeded.
 8. Report:
@@ -53,7 +53,7 @@ Before any Appium mobile E2E work, verify the local Appium installation and serv
 
 When the user explicitly asks for a reusable script, or asks to save a successful flow for reruns:
 
-- put the script directly under `e2e/` with a short feature name
+- put the flow script under `e2e/flows/` with a short feature name
 - keep configuration in environment variables with optional `e2e/environment.js`
 - write a JSON result file under `e2e/results/`
 - follow the detailed template in `references/reusable-script-template.md`
