@@ -88,3 +88,36 @@ npx skills add dxik/appium-mobile-e2e --skill appium-mobile-e2e --agent github-c
 If `--agent` is omitted, the CLI may auto-detect the current agent or prompt interactively when needed. The same `SKILL.md` is installed for both agents; the CLI handles the destination path for each one.
 
 The CLI discovers this skill from `skills/appium-mobile-e2e/SKILL.md`.
+
+## Visual Test Runner (VS Code Extension)
+
+For a richer experience — browsing, running, and reviewing results directly in VS Code — install the **Appium Visual** extension:
+
+**Marketplace:** [dungtran.appium-visual](https://marketplace.visualstudio.com/items?itemName=dungtran.appium-visual)
+
+**Quick install via VS Code:**
+
+```bash
+code --install-extension dungtran.appium-visual
+```
+
+Or open the Extensions panel (`Cmd+Shift+X`), search for **Appium Visual**, and click **Install**.
+
+### What it gives you
+
+| Feature | Detail |
+|---------|--------|
+| **Test discovery** | Automatically detects Appium JS test files in `e2e/flows/` and lists them in a dedicated sidebar |
+| **Multiple test runs** | Select one or more tests from the sidebar and run them in sequence |
+| **Live log streaming** | Streams Appium output to a visual dashboard as the test runs |
+| **Results panel** | Shows final status, assertion results, logs, and local artifacts per run |
+| **Device selection** | Detects connected Android devices (`adb devices`) and booted iOS simulators (`xcrun simctl`); pick a default device once |
+| **Appium server management** | Starts a local Appium server automatically when none is running |
+| **Cancel support** | Stop an in-progress test run at any time |
+
+### Troubleshooting
+
+- **No tests appear** — add `.js` test files under `e2e/flows/` and click **Refresh** in the Appium Tests sidebar.
+- **No Android devices** — run `adb devices` to verify the device is connected and authorised.
+- **No iOS simulators** — boot a simulator first, then check `xcrun simctl list devices booted`.
+- **Appium not running** — use the **Appium: Start Appium** command or set `appiumVisual.appiumServerUrl` to point at a running server.
